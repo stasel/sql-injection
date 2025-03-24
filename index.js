@@ -8,6 +8,7 @@ const pool = await mysql.createPool({
   port: process.env.DB_PORT,
   password: process.env.DB_PASSWORD,
   database: 'hyf',
+  multipleStatements: true,
 });
 
 const searchTrainee = async (lastName)  =>{
