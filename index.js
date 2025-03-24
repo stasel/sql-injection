@@ -11,13 +11,14 @@ const pool = await mysql.createPool({
 });
 
 const searchTrainee = async (lastName)  =>{
+  const query = `SELECT * FROM trainees WHERE last_name like '%${lastName}%' LIMIT 10;`;
   try {
-    const query = `SELECT * FROM trainees WHERE last_name like '%${lastName}%' LIMIT 10;`
-    console.log(query);
     const [rows] = await pool.execute(query);
+    console.log(`✅ ${query}`);
     return rows;
   } catch (error) {
-    console.error('Error executing query:', error);
+    console.log(`❌ ${query}`);
+    return null;
   }
 }
 
